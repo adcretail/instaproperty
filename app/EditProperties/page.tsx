@@ -133,7 +133,7 @@ const EditProperties: React.FC = () => {
             alert("Please wait for the image upload to complete");
             return;
         }
-    
+
         try {
             const propertyData = {
                 ...formData,
@@ -142,10 +142,10 @@ const EditProperties: React.FC = () => {
                 areaSqft: parseInt(formData.areaSqft.toString(), 10),
                 userId: user.uid,
             };
-    
+
             const docRef = doc(db, "properties", selectedPropertyId);
             await updateDoc(docRef, propertyData);
-    
+
             const response = await fetch(`/api/properties/update/${selectedPropertyId}`, {
                 method: "PUT",
                 headers: {
@@ -153,7 +153,7 @@ const EditProperties: React.FC = () => {
                 },
                 body: JSON.stringify(propertyData),
             });
-    
+
             if (response.ok) {
                 alert("Property updated successfully in MySQL!");
                 router.push("/");
@@ -162,7 +162,7 @@ const EditProperties: React.FC = () => {
                 console.error("Error updating property in MySQL:", errorData);
                 alert("Error updating property");
             }
-    
+
             alert("Property updated successfully!");
             fetchUserProperties(user.uid); // Refresh properties list
         } catch (err) {
@@ -170,7 +170,7 @@ const EditProperties: React.FC = () => {
             alert("Error updating property");
         }
     };
-    
+
     const handleDelete = async (propertyId: string) => {
         if (!user) {
             alert("You need to be logged in to delete a property");
@@ -201,101 +201,101 @@ const EditProperties: React.FC = () => {
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-6 bg-gray-100">
-            {selectedPropertyId ? (
-                <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
-                    <h1 className="text-2xl font-bold mb-6">Edit Property</h1>
-                    <div className="flex flex-col space-y-4">
-                        {[
-                            { label: "Title", name: "title", type: "text" },
-                            { label: "Content", name: "content", type: "textarea" },
-                            { label: "City", name: "city", type: "text" },
-                            { label: "Area", name: "area", type: "text" },
-                            { label: "Locality", name: "locality", type: "text" },
-                            { label: "Floor", name: "floor", type: "number" },
-                            { label: "Property Type", name: "propertyType", type: "select", options: ["house", "apartment", "plot", "builderFloor", "cooperativeSociety"] },
-                            { label: "Transaction Type", name: "transactionType", type: "select", options: ["leaseHold", "freeHold"] },
-                            { label: "Option", name: "option", type: "select", options: ["sell", "rent", "pg"] },
-                            { label: "Price", name: "price", type: "number" },
-                            { label: "Area (sq ft)", name: "areaSqft", type: "number" },
-                            { label: "Owner Name", name: "ownerName", type: "text" },
-                            { label: "Contact Number", name: "contactNumber", type: "text" },
-                            { label: "Facing Direction", name: "facingDirection", type: "select", options: ["north", "south", "east", "west"] },
-                            { label: "Status", name: "status", type: "select", options: ["readyToMove", "underConstruction"] },
-                        ].map((field, idx) => (
-                            <div key={idx}>
-                                <label className="block text-gray-700 font-medium mb-2" htmlFor={field.name}>
-                                    {field.label}
-                                </label>
-                                {field.type === "select" ? (
-                                    <select
-                                        id={field.name}
-                                        name={field.name}
-                                        value={formData[field.name as keyof FormData] as string}
-                                        onChange={handleChange}
-                                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                                    >
-                                        {field.options!.map((option, index) => (
-                                            <option key={index} value={option}>
-                                                {option}
-                                            </option>
-                                        ))}
-                                    </select>
-                                ) : field.type === "textarea" ? (
-                                    <textarea
-                                        id={field.name}
-                                        name={field.name}
-                                        placeholder={`Enter ${field.label.toLowerCase()}`}
-                                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                                        value={formData[field.name as keyof FormData] as string}
-                                        onChange={handleChange}
-                                    />
-                                ) : (
-                                    <input
-                                        type={field.type}
-                                        id={field.name}
-                                        name={field.name}
-                                        placeholder={`Enter ${field.label.toLowerCase()}`}
-                                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                                        value={formData[field.name as keyof FormData] as string | number}
-                                        onChange={handleChange}
-                                    />
-                                )}
-                            </div>
-                        ))}
-                        <div>
-                            <label className="block text-gray-700 font-medium mb-2" htmlFor="images">
-                                Upload Images
-                            </label>
-                            <input
-                                type="file"
-                                id="images"
-                                name="images"
-                                accept="image/*"
-                                className="w-full p-2 border border-gray-300 rounded mt-1"
-                                onChange={handleImageUpload}
-                                multiple
-                            />
-                        </div>
+  {selectedPropertyId ? (
+    <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
+      <h1 className="text-2xl **font-bold** mb-6 **text-black**"><b>Edit Property</b></h1>
+      <div className="flex flex-col space-y-4">
+        {[
+          { label: "**Title**", name: "title", type: "text" },
+          { label: "**Content**", name: "content", type: "textarea" },
+          { label: "**City**", name: "city", type: "text" },
+          { label: "**Area**", name: "area", type: "text" },
+          { label: "**Locality**", name: "locality", type: "text" },
+          { label: "**Floor**", name: "floor", type: "number" },
+          { label: "**Property Type**", name: "propertyType", type: "select", options: ["house", "apartment", "plot", "builderFloor", "cooperativeSociety"] },
+          { label: "**Transaction Type**", name: "transactionType", type: "select", options: ["leaseHold", "freeHold"] },
+          { label: "**Option**", name: "option", type: "select", options: ["sell", "rent", "pg"] },
+          { label: "**Price**", name: "price", type: "number" },
+          { label: "**Area (sq ft)**", name: "areaSqft", type: "number" },
+          { label: "**Owner Name**", name: "ownerName", type: "text" },
+          { label: "**Contact Number**", name: "contactNumber", type: "text" },
+          { label: "**Facing Direction**", name: "facingDirection", type: "select", options: ["north", "south", "east", "west"] },
+          { label: "**Status**", name: "status", type: "select", options: ["readyToMove", "underConstruction"] },
+        ].map((field, idx) => (
+          <div key={idx}>
+            <label className="block **text-black** **font-bold** mb-2" htmlFor={field.name}>
+              {field.label}
+            </label>
+            {field.type === "select" ? (
+              <select
+                id={field.name}
+                name={field.name}
+                value={formData[field.name as keyof FormData] as string}
+                onChange={handleChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+              >
+                {field.options!.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            ) : field.type === "textarea" ? (
+              <textarea
+                id={field.name}
+                name={field.name}
+                placeholder={`Enter ${field.label.toLowerCase()}`}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+                value={formData[field.name as keyof FormData] as string}
+                onChange={handleChange}
+              />
+            ) : (
+              <input
+                type={field.type}
+                id={field.name}
+                name={field.name}
+                placeholder={`Enter ${field.label.toLowerCase()}`}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+                value={formData[field.name as keyof FormData] as string | number}
+                onChange={handleChange}
+              />
+            )}
+          </div>
+        ))}
+        <div>
+          <label className="block **text-black** **font-bold** mb-2" htmlFor="images">
+            **Upload Images**
+          </label>
+          <input
+            type="file"
+            id="images"
+            name="images"
+            accept="image/*"
+            className="w-full p-2 border border-gray-300 rounded mt-1"
+            onChange={handleImageUpload}
+            multiple
+          />
+        </div>
 
-                        <div>
-                            {formData.images.map((imageUrl, index) => (
-                                <div key={index} className="mt-2 relative">
-                                    <Image
-                                        src={imageUrl}
-                                        alt={`Uploaded image ${index + 1}`}
-                                        width={200}
-                                        height={200}
-                                        className="rounded"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => handleImageRemove(imageUrl)}
-                                        className="absolute top-0 right-0 bg-red-500 text-white p-1 rounded"
-                                    >
-                                        Remove
-                                    </button>
-                                </div>
-                            ))}
+        <div>
+          {formData.images.map((imageUrl, index) => (
+            <div key={index} className="mt-2 relative">
+              <Image
+                src={imageUrl}
+                alt={`Uploaded image ${index + 1}`}
+                width={200}
+                height={200}
+                className="rounded"
+              />
+              <button
+                type="button"
+                onClick={() => handleImageRemove(imageUrl)}
+                className="absolute top-0 right-0 bg-red-500 text-white p-1 rounded"
+              >
+                **Remove**
+              </button>
+            </div>
+          ))}
                         </div>
 
                         <button
