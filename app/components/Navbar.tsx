@@ -31,7 +31,7 @@ const Navbar = () => {
     <nav className="bg-blue-200 p-4 flex justify-between items-center">
       <div className="flex items-center">
         <Link href="/" className="text-3xl font-bold text-gray-700">
-          Logo
+          InstaProperty
         </Link>
       </div>
       <div className="flex items-center ml-4 gap-4">
