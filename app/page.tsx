@@ -103,10 +103,10 @@ export default function Home() {
   return (
     <main className="flex flex-col lg:flex-row min-h-screen bg-blue-100">
       <aside className="w-full lg:w-1/4 p-6 bg-white shadow-md">
-        <h2 className="text-xl font-bold mb-4">Filters</h2>
+        <h2 className="text-xl font-bold mb-4 text-black">Filters</h2>
         <form onSubmit={handleFilterSubmit}>
           <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">City</h3>
+            <h3 className="text-lg font-bold mb-2 text-black">City</h3>
             <input
               type="text"
               name="city"
@@ -116,7 +116,7 @@ export default function Home() {
             />
           </div>
           <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">Locality</h3>
+            <h3 className="text-lg font-bold mb-2 text-black">Locality</h3>
             <input
               type="text"
               name="locality"
@@ -126,7 +126,7 @@ export default function Home() {
             />
           </div>
           <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">Budget</h3>
+            <h3 className="text-lg font-bold mb-2 text-black">Budget</h3>
             <input
               type="number"
               name="minPrice"
@@ -146,29 +146,29 @@ export default function Home() {
               placeholder="Max Price"
             />
             <div className="flex justify-between text-sm mt-2">
-              <span>₹0</span>
-              <span>₹100+ Crores</span>
+              <span className="font-bold text-black">₹0</span>
+              <span className="font-bold text-black">₹100+ Crores</span>
             </div>
           </div>
           <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">Type of Property</h3>
+            <h3 className="text-lg font-bold mb-2 text-black">Type of Property</h3>
             <select
               name="propertyType"
               value={filterData.propertyType}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded"
             >
-              <option value="">Select Property Type</option>
-              <option value="house">House</option>
-              <option value="apartment">Apartment</option>
-              <option value="plot">Plot</option>
-              <option value="builderFloor">Builder Floor</option>
-              <option value="cooperativeSociety">Cooperative Society</option>
+              <option value="" className="font-bold text-black">Select Property Type</option>
+              <option value="house" className="font-bold text-black">House</option>
+              <option value="apartment" className="font-bold text-black">Apartment</option>
+              <option value="plot" className="font-bold text-black">Plot</option>
+              <option value="builderFloor" className="font-bold text-black">Builder Floor</option>
+              <option value="cooperativeSociety" className="font-bold text-black">Cooperative Society</option>
             </select>
           </div>
           <button
             type="submit"
-            className="bg-blue-500 text-white p-2 rounded mt-4 w-full"
+            className="bg-blue-500 text-white p-2 rounded mt-4 w-full font-bold"
             disabled={isLoading}
           >
             {isLoading ? "Searching..." : "Search"}
@@ -176,7 +176,7 @@ export default function Home() {
         </form>
       </aside>
       <section className="flex-1 p-6">
-        <h1 className="text-2xl font-bold mb-6">Properties</h1>
+        <h1 className="text-2xl font-bold mb-6 text-black">Properties</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filterProperties().map(property => (
             <div
@@ -192,11 +192,11 @@ export default function Home() {
                   loading="lazy"
                 />
               )}
-              <h2 className="text-xl font-semibold mb-2 text-gray-800">{property.title}</h2>
-              <p className="text-gray-700 mb-2">{property.area}</p>
-              <p className="text-gray-600">{property.city}</p>
-              <p className="text-lg font-bold mt-2 text-gray-800">₹{property.price}</p>
-              <p className="text-sm text-gray-500">{property.size} sqft | {property.bhk} BHK</p>
+              <h2 className="text-xl font-bold mb-2 text-black">{property.title}</h2>
+              <p className="text-black font-bold mb-2">{property.area}</p>
+              <p className="text-black font-bold">{property.city}</p>
+              <p className="text-lg font-bold mt-2 text-black">₹{property.price}</p>
+              <p className="text-sm font-bold text-black">{property.size} sqft | {property.bhk} BHK</p>
             </div>
           ))}
         </div>
