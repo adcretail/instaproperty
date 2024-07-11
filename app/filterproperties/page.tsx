@@ -106,7 +106,7 @@ const FilterProperties: React.FC = () => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-6 bg-gray-100">
       <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-6">Filter Properties</h1>
+        <h1 className="text-2xl font-bold mb-6 text-black">Filter Properties</h1>
         <div className="flex flex-col space-y-4">
           {[
             { label: "City", name: "city", type: "text" },
@@ -117,7 +117,7 @@ const FilterProperties: React.FC = () => {
             { label: "Option", name: "option", type: "select", options: ["sell", "rent"] },
           ].map((field, idx) => (
             <div key={idx}>
-              <label className="block text-gray-700 font-medium mb-2" htmlFor={field.name}>
+              <label className="block text-black font-bold mb-2" htmlFor={field.name}>
                 {field.label}
               </label>
               {field.type === "select" ? (
@@ -126,10 +126,10 @@ const FilterProperties: React.FC = () => {
                   name={field.name}
                   value={filterData[field.name as keyof FilterData] as string}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 rounded mt-1 font-bold text-black"
                 >
                   {field.options!.map((option, index) => (
-                    <option key={index} value={option}>
+                    <option key={index} value={option} className="font-bold text-black">
                       {option}
                     </option>
                   ))}
@@ -140,7 +140,7 @@ const FilterProperties: React.FC = () => {
                   id={field.name}
                   name={field.name}
                   placeholder={`Enter ${field.label.toLowerCase()}`}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 rounded mt-1 font-bold text-black"
                   value={filterData[field.name as keyof FilterData] as string | number}
                   onChange={handleChange}
                 />
@@ -149,7 +149,7 @@ const FilterProperties: React.FC = () => {
           ))}
           <button
             type="submit"
-            className="bg-blue-500 text-white p-2 rounded mt-4"
+            className="bg-blue-500 text-white p-2 rounded mt-4 font-bold"
             disabled={isLoading}
           >
             {isLoading ? "Searching..." : "Search"}
@@ -158,7 +158,7 @@ const FilterProperties: React.FC = () => {
       </form>
 
       <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-md mt-6">
-        <h1 className="text-2xl font-bold mb-4">Properties</h1>
+        <h1 className="text-2xl font-bold mb-4 text-black">Properties</h1>
         {properties.length > 0 ? (
           properties.map((property) => (
             <div key={property.id} className="mb-4">
@@ -166,30 +166,30 @@ const FilterProperties: React.FC = () => {
                 <div className="mb-4 grid grid-cols-3 gap-4">
                   {property.images.map((image: string, index: number) => (
                     <div key={index} className="relative w-full h-32">
-                      <Image 
-                        src={image} 
-                        alt={property.title} 
-                        layout="fill" 
-                        objectFit="cover" 
-                        className="rounded-md" 
+                      <Image
+                        src={image}
+                        alt={property.title}
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded-md"
                       />
                     </div>
                   ))}
                 </div>
               )}
-              <h2 className="text-xl font-bold mb-2">{property.title}</h2>
-              <p className="text-gray-700 mb-2"><strong>Owner:</strong> {property.ownerName}</p>
-              <p className="text-gray-700 mb-2"><strong>Price:</strong> Rs {property.price}</p>
-              <span 
-                onClick={() => handlePropertyClick(property.id)} 
-                className="text-blue-500 cursor-pointer"
+              <h2 className="text-xl font-bold mb-2 text-black">{property.title}</h2>
+              <p className="text-black font-bold mb-2"><strong>Owner:</strong> {property.ownerName}</p>
+              <p className="text-black font-bold mb-2"><strong>Price:</strong> Rs {property.price}</p>
+              <span
+                onClick={() => handlePropertyClick(property.id)}
+                className="text-blue-500 cursor-pointer font-bold"
               >
                 View Details
               </span>
             </div>
           ))
         ) : (
-          <p>No properties found</p>
+          <p className="text-black font-bold">No properties found</p>
         )}
       </div>
     </main>
