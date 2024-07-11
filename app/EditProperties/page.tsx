@@ -201,7 +201,7 @@ const EditProperties: React.FC = () => {
         <main className="flex min-h-screen flex-col items-center justify-between p-6 bg-gray-100">
             {selectedPropertyId ? (
                 <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
-                    <h1 className="text-2xl font-bold text-black mb-6">Edit Property</h1>
+                    <h1 className="text-2xl font-bold text-slate-700 mb-6">Edit Property</h1>
                     <div className="flex flex-col space-y-4">
                         {[
                             { label: "Title", name: "title", type: "text" },
@@ -221,7 +221,7 @@ const EditProperties: React.FC = () => {
                             { label: "Status", name: "status", type: "select", options: ["readyToMove", "underConstruction"] },
                         ].map((field, idx) => (
                             <div key={idx}>
-                                <label className="block text-black font-bold mb-2" htmlFor={field.name}>
+                                <label className="block text-slate-700 font-bold mb-2" htmlFor={field.name}>
                                     {field.label}
                                 </label>
                                 {field.type === "select" ? (
@@ -261,7 +261,7 @@ const EditProperties: React.FC = () => {
                             </div>
                         ))}
                         <div>
-                            <label className="block text-black font-bold mb-2" htmlFor="images">
+                            <label className="block text-slate-700 font-bold mb-2" htmlFor="images">
                                 Upload Images
                             </label>
                             <input
@@ -310,8 +310,8 @@ const EditProperties: React.FC = () => {
                         <div key={property.id} className="max-w-sm w-full lg:max-w-full lg:flex m-4">
                             <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                 <div className="mb-8">
-                                    <div className="text-black font-bold text-xl mb-2">{property.title}</div>
-                                    <p className="text-black text-base font-bold">{property.content}</p>
+                                    <div className="text-slate-700 font-bold text-xl mb-2">{property.title}</div>
+                                    <p className="text-slate-700 text-base font-bold">{property.content}</p>
                                 </div>
                                 <div className="flex items-center">
                                     {property.images.map((imageUrl, index) => (
@@ -328,13 +328,13 @@ const EditProperties: React.FC = () => {
                                 <div className="flex justify-between mt-4">
                                     <button
                                         onClick={() => fetchPropertyDetails(property.id!)}
-                                        className="bg-yellow-500 text-white p-2 rounded"
+                                        className="bg-yellow-500 text-black font-bold p-2 rounded"
                                     >
                                         Edit
                                     </button>
                                     <button
                                         onClick={() => handleDelete(property.id!)}
-                                        className="bg-red-500 text-white p-2 rounded"
+                                        className="bg-red-500 text-black font-bold p-2 rounded"
                                     >
                                         Delete
                                     </button>
