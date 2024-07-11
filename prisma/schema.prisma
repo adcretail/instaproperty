@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String      @id @default(uuid())
+  email       String      @unique
+  password    String
+  properties  Property[]
+  shortlists  Shortlist[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Property {
+  id             String      @id @default(uuid())
+  title          String
+  content        String
+  city           String
+  area           String
+  locality       String
+  floor          Int
+  propertyType   String
+  transactionType String
+  option         String
+  price          Int
+  areaSqft       Int
+  ownerName      String
+  contactNumber  String
+  facingDirection String
+  status         String
+  userId         String
+  user           User        @relation(fields: [userId], references: [id])
+  shortlists     Shortlist[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
+
+model Shortlist {
+  id            String     @id @default(uuid())
+  userId        String
+  user          User       @relation(fields: [userId], references: [id])
+  propertyId    String
+  property      Property   @relation(fields: [propertyId], references: [id])
+  isShortlisted Boolean    @default(false)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
