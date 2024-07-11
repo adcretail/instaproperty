@@ -45,7 +45,7 @@ export default function ShortlistedProperties() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-6 bg-gray-100">
       <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-4">Shortlisted Properties</h1>
+        <h1 className="text-2xl font-bold mb-4 text-black">Shortlisted Properties</h1>
         {properties.length > 0 ? (
           properties.map((property) => (
             <Link href={`/viewproperties?id=${property.id}`} key={property.id}>
@@ -54,25 +54,25 @@ export default function ShortlistedProperties() {
                   <div className="mb-4 grid grid-cols-3 gap-4">
                     {property.images.map((image: string, index: number) => (
                       <div key={index} className="relative w-full h-32">
-                        <Image 
-                          src={image} 
-                          alt={property.title} 
-                          layout="fill" 
-                          objectFit="cover" 
-                          className="rounded-md" 
+                        <Image
+                          src={image}
+                          alt={property.title}
+                          layout="fill"
+                          objectFit="cover"
+                          className="rounded-md"
                         />
                       </div>
                     ))}
                   </div>
                 )}
-                <h2 className="text-xl font-bold mb-2">{property.title}</h2>
-                <p className="text-gray-700 mb-2"><strong>Owner:</strong> {property.ownerName}</p>
-                <p className="text-gray-700 mb-2"><strong>Price:</strong> Rs {property.price}</p>
+                <h2 className="text-xl font-bold mb-2 text-black">{property.title}</h2>
+                <p className="text-black font-bold mb-2"><strong>Owner:</strong> {property.ownerName}</p>
+                <p className="text-black font-bold mb-2"><strong>Price:</strong> Rs {property.price}</p>
               </span>
             </Link>
           ))
         ) : (
-          <p>No properties shortlisted</p>
+          <p className="text-black font-bold">No properties shortlisted</p>
         )}
       </div>
     </main>
