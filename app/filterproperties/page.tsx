@@ -11,8 +11,6 @@ import { db } from "@/app/firebase";
 interface FilterData {
   city: string;
   locality: string;
-  minPrice: number;
-  maxPrice: number;
   propertyType: string;
   option: string;
 }
@@ -42,8 +40,6 @@ const FilterProperties: React.FC = () => {
   const [filterData, setFilterData] = useState<FilterData>({
     city: "",
     locality: "",
-    minPrice: 0,
-    maxPrice: 0,
     propertyType: "house",
     option: "sell",
   });
@@ -77,8 +73,6 @@ const FilterProperties: React.FC = () => {
       const conditions: QueryConstraint[] = [];
       if (filterData.city) conditions.push(where("city", "==", filterData.city));
       if (filterData.locality) conditions.push(where("locality", "==", filterData.locality));
-      if (filterData.minPrice) conditions.push(where("price", ">=", filterData.minPrice));
-      if (filterData.maxPrice) conditions.push(where("price", "<=", filterData.maxPrice));
       if (filterData.propertyType) conditions.push(where("propertyType", "==", filterData.propertyType));
       if (filterData.option) conditions.push(where("option", "==", filterData.option));
 
@@ -111,8 +105,6 @@ const FilterProperties: React.FC = () => {
           {[
             { label: "City", name: "city", type: "text" },
             { label: "Locality", name: "locality", type: "text" },
-            { label: "Min Price", name: "minPrice", type: "number" },
-            { label: "Max Price", name: "maxPrice", type: "number" },
             { label: "Property Type", name: "propertyType", type: "select", options: ["house", "apartment", "plot", "builderFloor", "cooperativeSociety"] },
             { label: "Option", name: "option", type: "select", options: ["sell", "rent"] },
           ].map((field, idx) => (
@@ -160,34 +152,35 @@ const FilterProperties: React.FC = () => {
       <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-md mt-6">
         <h1 className="text-2xl font-bold mb-4 text-black">Properties</h1>
         {properties.length > 0 ? (
-          properties.map((property) => (
-            <div key={property.id} className="mb-4">
-              {property.images && property.images.length > 0 && (
-                <div className="mb-4 grid grid-cols-3 gap-4">
-                  {property.images.map((image: string, index: number) => (
-                    <div key={index} className="relative w-full h-32">
-                      <Image
-                        src={image}
-                        alt={property.title}
-                        layout="fill"
-                        objectFit="cover"
-                        className="rounded-md"
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-              <h2 className="text-xl font-bold mb-2 text-black">{property.title}</h2>
-              <p className="text-black font-bold mb-2"><strong>Owner:</strong> {property.ownerName}</p>
-              <p className="text-black font-bold mb-2"><strong>Price:</strong> Rs {property.price}</p>
-              <span
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {properties.map((property) => (
+              <div
+                key={property.id}
+                className="bg-white p-4 rounded-lg shadow-md cursor-pointer transition-transform transform hover:scale-105"
                 onClick={() => handlePropertyClick(property.id)}
-                className="text-blue-500 cursor-pointer font-bold"
               >
-                View Details
-              </span>
-            </div>
-          ))
+                {property.images && property.images.length > 0 && (
+                  <div className="relative w-full h-48 mb-4">
+                    <Image
+                      src={property.images[0]}
+                      alt={property.title}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-md"
+                    />
+                  </div>
+                )}
+                <h2 className="text-xl font-bold mb-2 text-black">{property.title}</h2>
+                <p className="text-black font-bold mb-2"><strong>Owner:</strong> {property.ownerName}</p>
+                <p className="text-black font-bold mb-2"><strong>Price:</strong> Rs {property.price}</p>
+                <span
+                  className="text-blue-500 cursor-pointer font-bold"
+                >
+                  View Details
+                </span>
+              </div>
+            ))}
+          </div>
         ) : (
           <p className="text-black font-bold">No properties found</p>
         )}
