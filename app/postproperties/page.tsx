@@ -142,7 +142,7 @@ const postproperties: React.FC = () => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-6 bg-gray-100">
       <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-6">Post Property</h1>
+        <h1 className="text-2xl font-bold mb-6 text-black">Post Property</h1>
         <div className="flex flex-col space-y-4">
           {[
             { label: "Title", name: "title", type: "text" },
@@ -162,7 +162,7 @@ const postproperties: React.FC = () => {
             { label: "Status", name: "status", type: "select", options: ["readyToMove", "underConstruction"] },
           ].map((field, idx) => (
             <div key={idx}>
-              <label className="block text-gray-700 font-medium mb-2" htmlFor={field.name}>
+              <label className="block text-black font-bold mb-2" htmlFor={field.name}>
                 {field.label}
               </label>
               {field.type === "select" ? (
@@ -171,10 +171,10 @@ const postproperties: React.FC = () => {
                   name={field.name}
                   value={formData[field.name as keyof FormData] as string}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 rounded mt-1 font-bold text-black"
                 >
                   {field.options!.map((option, index) => (
-                    <option key={index} value={option}>
+                    <option key={index} value={option} className="font-bold text-black">
                       {option}
                     </option>
                   ))}
@@ -184,7 +184,7 @@ const postproperties: React.FC = () => {
                   id={field.name}
                   name={field.name}
                   placeholder={`Enter ${field.label.toLowerCase()}`}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 rounded mt-1 font-bold text-black"
                   value={formData[field.name as keyof FormData] as string}
                   onChange={handleChange}
                 />
@@ -194,7 +194,7 @@ const postproperties: React.FC = () => {
                   id={field.name}
                   name={field.name}
                   placeholder={`Enter ${field.label.toLowerCase()}`}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 rounded mt-1 font-bold text-black"
                   value={formData[field.name as keyof FormData] as string | number}
                   onChange={handleChange}
                 />
@@ -202,7 +202,7 @@ const postproperties: React.FC = () => {
             </div>
           ))}
           <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="images">
+            <label className="block text-black font-bold mb-2" htmlFor="images">
               Upload Images
             </label>
             <input
@@ -210,7 +210,7 @@ const postproperties: React.FC = () => {
               id="images"
               name="images"
               accept="image/*"
-              className="w-full p-2 border border-gray-300 rounded mt-1"
+              className="w-full p-2 border border-gray-300 rounded mt-1 font-bold text-black"
               onChange={handleImageUpload}
               multiple
             />
@@ -232,7 +232,7 @@ const postproperties: React.FC = () => {
 
           <button
             type="submit"
-            className="bg-blue-500 text-white p-2 rounded mt-4"
+            className="bg-blue-500 text-white p-2 rounded mt-4 font-bold"
           >
             Post Property
           </button>
