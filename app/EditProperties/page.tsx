@@ -230,7 +230,7 @@ const EditProperties: React.FC = () => {
                                         name={field.name}
                                         value={formData[field.name as keyof FormData] as string}
                                         onChange={handleChange}
-                                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                                        className="w-full p-2 border border-gray-300 rounded mt-1 text-black font-bold"
                                     >
                                         {field.options!.map((option, index) => (
                                             <option key={index} value={option}>
@@ -243,7 +243,7 @@ const EditProperties: React.FC = () => {
                                         id={field.name}
                                         name={field.name}
                                         placeholder={`Enter ${field.label.toLowerCase()}`}
-                                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                                        className="w-full p-2 border border-gray-300 rounded mt-1 text-black font-bold"
                                         value={formData[field.name as keyof FormData] as string}
                                         onChange={handleChange}
                                     />
@@ -253,7 +253,7 @@ const EditProperties: React.FC = () => {
                                         id={field.name}
                                         name={field.name}
                                         placeholder={`Enter ${field.label.toLowerCase()}`}
-                                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                                        className="w-full p-2 border border-gray-300 rounded mt-1 text-black font-bold"
                                         value={formData[field.name as keyof FormData] as string | number}
                                         onChange={handleChange}
                                     />
@@ -328,13 +328,13 @@ const EditProperties: React.FC = () => {
                                 <div className="flex justify-between mt-4">
                                     <button
                                         onClick={() => fetchPropertyDetails(property.id!)}
-                                        className="bg-yellow-500 text-black font-bold p-2 rounded"
+                                        className="bg-yellow-500 text-white p-2 rounded"
                                     >
                                         Edit
                                     </button>
                                     <button
                                         onClick={() => handleDelete(property.id!)}
-                                        className="bg-red-500 text-black font-bold p-2 rounded"
+                                        className="bg-red-500 text-white p-2 rounded"
                                     >
                                         Delete
                                     </button>
