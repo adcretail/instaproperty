@@ -8,8 +8,8 @@ import SessionProvider from './SessionProvider';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "InstaCommerce",
-  description: "Ecommerce MarketPlace",
+  title: "InstaProperty",
+  description: "India's Number One completely Free Real Estate Marketplace for sell as well as Rent for connecting owners with buyers",
 };
 
 export default function RootLayout({
