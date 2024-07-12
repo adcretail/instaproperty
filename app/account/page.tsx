@@ -46,24 +46,24 @@ const AccountPage = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
-        <h1 className="text-2xl font-bold mb-4">Account Details</h1>
+        <h1 className="text-2xl font-bold text-black mb-4">Account Details</h1>
         {userDetails ? (
           <div className="space-y-4">
             <div className="flex items-center">
-              <span className="font-medium">Name:</span>
-              <span className="ml-2">{userDetails.name}</span>
+              <span className="font-bold text-black">Name:</span>
+              <span className="ml-2 font-bold text-black">{userDetails.name}</span>
             </div>
             <div className="flex items-center">
-              <span className="font-medium">Email:</span>
-              <span className="ml-2">{userDetails.email}</span>
+              <span className="font-bold text-black">Email:</span>
+              <span className="ml-2 font-bold text-black">{userDetails.email}</span>
             </div>
             <div className="flex items-center">
-              <span className="font-medium">Mobile:</span>
-              <span className="ml-2">{userDetails.mobile}</span>
+              <span className="font-bold text-black">Mobile:</span>
+              <span className="ml-2 font-bold text-black">{userDetails.mobile}</span>
             </div>
           </div>
         ) : (
-          <p>Loading user details...</p>
+          <p className="font-bold text-black">Loading user details...</p>
         )}
       </div>
     </div>
