@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { auth, db } from "@/app/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import Head from 'next/head';
 import OwnerMobileDialog from '../components/OTPDialog';
 
 export default function ViewProperties() {
@@ -28,11 +29,19 @@ export default function ViewProperties() {
   }, [router]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-6 bg-gray-100">
-      <Suspense fallback={<div>Loading...</div>}>
-        {user && <PropertyDetails user={user} />}
-      </Suspense>
-    </main>
+    <>
+      <Head>
+        <title>View Properties - Find Your Ideal Property</title>
+        <meta name="description" content="Explore a wide range of properties and find your ideal home. Contact owners and shortlist properties easily with our user-friendly platform." />
+        <meta name="keywords" content="properties, real estate, home, buy property, rent property, contact owner, shortlist property" />
+        <meta name="robots" content="index, follow" />
+      </Head>
+      <main className="flex min-h-screen flex-col items-center justify-between p-6 bg-gray-100">
+        <Suspense fallback={<div>Loading...</div>}>
+          {user && <PropertyDetails user={user} />}
+        </Suspense>
+      </main>
+    </>
   );
 }
 
