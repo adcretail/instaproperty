@@ -1,5 +1,8 @@
-"use client";
+"use client"
 
+// Import Carousel from react-responsive-carousel
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import the default carousel styles
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { auth, db } from "@/app/firebase";
@@ -7,6 +10,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import Head from 'next/head';
 import OwnerMobileDialog from '../components/OTPDialog';
+import Image from 'next/image';  // Use Next.js Image component for optimized images
 
 export default function ViewProperties() {
   const [user, setUser] = useState<{ id: string; email: string | null } | null>(null);
@@ -32,8 +36,14 @@ export default function ViewProperties() {
     <>
       <Head>
         <title>View Properties - Find Your Ideal Property</title>
-        <meta name="description" content="Explore a wide range of properties and find your ideal home. Contact owners and shortlist properties easily with our user-friendly platform." />
-        <meta name="keywords" content="properties, real estate, home, buy property, rent property, contact owner, shortlist property" />
+        <meta
+          name="description"
+          content="Explore a wide range of properties and find your ideal home. Contact owners and shortlist properties easily with our user-friendly platform."
+        />
+        <meta
+          name="keywords"
+          content="properties, real estate, home, buy property, rent property, contact owner, shortlist property"
+        />
         <meta name="robots" content="index, follow" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-between p-6 bg-gray-100">
@@ -119,14 +129,32 @@ function PropertyDetails({ user }: { user: { id: string; email: string | null } 
 
   return (
     <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-md">
-      {property.images && property.images.length > 0 && (
-        <img
-          src={property.images[0]}
-          loading="lazy"
-          alt={property.title}
-          className="w-full h-64 object-cover rounded-md mb-4"
-        />
+      {property.images && property.images.length > 0 ? (
+        <Carousel
+          showThumbs={false}
+          infiniteLoop
+          useKeyboardArrows
+          autoPlay
+          className="w-full mb-4"
+        >
+          {property.images.map((imageUrl: string, index: number) => (
+            <div key={index}>
+              <Image
+                src={imageUrl}
+                alt={`Property image ${index + 1}`}
+                width={600}
+                height={400}
+                layout="responsive"
+                className="h-64 w-full object-cover rounded-md"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </Carousel>
+      ) : (
+        <p>No images available for this property.</p>
       )}
+
       <h1 className="text-2xl font-bold mb-4">{property.title}</h1>
       <p className="text-gray-700 mb-4">{property.content}</p>
       <p className="text-gray-700 mb-2"><strong>Owner:</strong> {property.ownerName}</p>
